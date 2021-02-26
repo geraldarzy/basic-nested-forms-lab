@@ -1,1 +1,24 @@
-<%= render 'form', recipe: @recipe %>
+
+
+<%=form_for @recipe do |f|%>
+    <p>
+        <%=f.label 'Recipe Title:'%>
+        <%=f.text_field :title%>
+    </p>
+
+    <%=f.fields_for :ingredients do |ingredient_attributes|%>
+        <fieldset>
+            So this form iterates through each of the ingredients in the user.new
+            <legend>Hello this form makes one separate ingredient</legend>
+            <p>
+                <%=ingredient_attributes.label :name%> <br>
+                <%=ingredient_attributes.text_field :name%> <br>
+            </p>
+            <p>
+                <%=ingredient_attributes.label :quantity%> <br>
+                <%=ingredient_attributes.text_field :quantity%> <br>
+            </p>
+        </fieldset>
+    <%end%>
+    <%=f.submit%>
+<%end%>
